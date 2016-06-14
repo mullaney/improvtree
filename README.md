@@ -2,6 +2,10 @@
 
 This application requires `docker` and `docker-compose`.
 
+Install them here: https://docs.docker.com/
+
+Clone this repository and move on to the setup:
+
 ## Setup
 
 You'll need to setup your database:
