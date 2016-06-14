@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 rm tmp/pids/server.pid
+mkdir -p db/neo4j-data
+mkdir -p db/redis-data
+mkdir -p db/postgres-data
+docker-compose kill
+docker-compose rm --all --force
 docker-compose build
 docker-compose up --force-recreate

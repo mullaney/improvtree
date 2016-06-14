@@ -6,7 +6,7 @@ capybara-*.html
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /db/neo4j-data/
-/db/postgres-data/
+/db/pg-data/
 /db/redis-data/
 /public/system
 /coverage/
