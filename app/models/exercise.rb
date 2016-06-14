@@ -6,8 +6,8 @@ class Exercise
   property :description
   property :code
 
-  validates :title, presence: true, unique: true
-  validates :code, presence: true, unique: true
+  validates :title, presence: true, uniqueness: true
+  validates :code, presence: true, uniqueness: true
 
   has_many :out, :prerequisite_of, rel_class: :ExercisePrerequisite
 end
