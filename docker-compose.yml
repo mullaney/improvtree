@@ -1,3 +1,11 @@
+neo4j:
+  image: neo4j:2.3
+  environment:
+    NEO4J_AUTH: none
+  ports:
+    - "7474:7474"
+  volumes:
+    - "./db/neo4j-data:/data"
 redis:
   image: redis:alpine
   ports:
@@ -14,14 +22,6 @@ postgres:
     - "5432:5432"
   volumes:
     - "./db/pg-data:/var/lib/postgresql/data"
-neo4j:
-  image: neo4j:2.3
-  environment:
-    NEO4J_AUTH: none
-  ports:
-    - "7474:7474"
-  volumes:
-    - "./db/neo4j-data:/data"
 web:
   build: .
   links:
@@ -34,4 +34,4 @@ web:
     - "3000:3000"
   environment:
     REDIS_URL: "redis://redis:6379/12"
-  command: rails server -b 0.0.0.0
+  command: script/wait-for-neo4j rails server -b 0.0.0.0

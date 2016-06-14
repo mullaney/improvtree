@@ -2,7 +2,8 @@ from bluebu/rails-alpine
 RUN mkdir /webapp
 RUN apk --update add --virtual build_deps \
     build-base ruby-dev libc-dev linux-headers \
-    openssl-dev postgresql-dev libxml2-dev libxslt-dev
+    openssl-dev postgresql-dev libxml2-dev libxslt-dev \
+    bash
 RUN gem update --system
 RUN gem install bundler
 WORKDIR /webapp
