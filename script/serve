@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+rm tmp/pids/server.pid
+docker-compose up
