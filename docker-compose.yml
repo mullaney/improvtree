@@ -1,28 +1,37 @@
-redis:                                                                       
-  image: redis:alpine                                                        
-  ports:                                                                     
-    - "6379:6379"                                                            
-  volumes:                                                                   
-    - "../news-graph-data/redis-data:/data"                                  
-  command: redis-server --appendonly yes                                     
-postgres:                                                                    
-  image: postgres                                                            
-  environment:                                                               
-    POSTGRES_USER: postgres                                                  
-    POSTGRES_PASSWORD: postgres                                              
-  ports:                                                                     
-    - "5432:5432"                                                            
-  volumes:                                                                   
-    - "../news-graph-data/pg-data:/var/lib/postgresql/data"                  
-web:                                                                         
-  build: .                                                                   
-  links:                                                                     
-    - redis                                                                  
-    - postgres                                                               
-  volumes:                                                                   
-    - ".:/webapp"                                                            
-  ports:                                                                     
-    - "3000:3000"                                                            
-  environment:                                                               
-    REDIS_URL: "redis://redis:6379/12"                                       
-  command: rails server -b 0.0.0.0                                           
+redis:
+  image: redis:alpine
+  ports:
+    - "6379:6379"
+  volumes:
+    - "./db/redis-data:/data"
+  command: redis-server --appendonly yes
+postgres:
+  image: postgres
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+  ports:
+    - "5432:5432"
+  volumes:
+    - "./db/pg-data:/var/lib/postgresql/data"
+neo4j:
+  image: neo4j:2.3
+  environment:
+    NEO4J_AUTH: none
+  ports:
+    - "7474:7474"
+  volumes:
+    - "./db/neo4j-data:/data"
+web:
+  build: .
+  links:
+    - redis
+    - postgres
+    - neo4j
+  volumes:
+    - ".:/webapp"
+  ports:
+    - "3000:3000"
+  environment:
+    REDIS_URL: "redis://redis:6379/12"
+  command: rails server -b 0.0.0.0

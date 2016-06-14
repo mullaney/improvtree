@@ -5,6 +5,9 @@ capybara-*.html
 /tmp
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/neo4j-data/
+/db/postgres-data/
+/db/redis-data/
 /public/system
 /coverage/
 /spec/tmp
@@ -39,3 +42,4 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+*.sw[opn]
