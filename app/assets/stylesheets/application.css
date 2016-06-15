@@ -28,3 +28,8 @@ body {
 .splash {
   text-align: center;
 }
+
+.splash-menu {
+	font-size: .7em;
+	margin: 60px 0 0 0;
+}
