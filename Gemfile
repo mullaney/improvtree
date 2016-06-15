@@ -48,3 +48,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'neo4j', '~> 7.0'
 gem 'pg', '0.18.4'
 gem 'formtastic', '~> 3.0'
+gem 'devise'
+gem 'turbolinks', '~> 2.5', '>= 2.5.3'
