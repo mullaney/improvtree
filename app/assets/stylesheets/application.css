@@ -17,6 +17,7 @@
 body {
   font-family: sans-serif;
   font-size: 14pt;
+  background-color: #ddd;
 }
 
 .splash-title {
@@ -32,4 +33,25 @@ body {
 .splash-menu {
 	font-size: .7em;
 	margin: 60px 0 0 0;
+}
+
+.container {
+  margin: auto;
+  width: 600px;
+  padding: 20px;
+  background-color: white;
+}
+
+.post-title {
+  font-size: 2em;
+  font-weight: bolder;
+  margin: 10px 0;
+}
+
+.field {
+  margin-top: 15px;
+}
+
+.actions {
+  margin-bottom: 15px;
 }
