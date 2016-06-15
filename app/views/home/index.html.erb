@@ -1,8 +1,9 @@
 <% provide(:title, 'Home - ImprovTree') %>
+<% provide(:no_top_menu, true) %>
 
 <div class="splash">
 	<%= image_tag "improvtree-200.jpg" %>
-  <h1 class="splash-title">ImprovTree</h1>
+  <h1 class="splash-title">Improv Tree</h1>
   <p class="splash-copy">Self-directed improv training</p>
   <p class="splash-menu">
     <% if user_signed_in? %>
