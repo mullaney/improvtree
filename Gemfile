@@ -45,5 +45,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'neo4j'
-gem 'pg'
+gem 'neo4j', '~> 7.0'
+gem 'pg', '0.18.4'
+gem 'formtastic', '~> 3.0'
