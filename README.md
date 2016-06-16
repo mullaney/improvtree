@@ -30,5 +30,12 @@ To run `rails` or `rake` commands:
 
 `scripts/rake[command]`
 
-
 Runs regular rails commands inside the docker vm. Will print out help.
+
+## Loading Production Data
+
+`script/load_prod_data`
+
+This script will create a backup of the production database and load it into your
+local database. (You WILL lose any current local data.)
+
