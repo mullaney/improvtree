@@ -30,8 +30,9 @@ web:
     - neo4j
   volumes:
     - ".:/webapp"
+    - "box:/box"
   ports:
     - "3000:3000"
   environment:
     REDIS_URL: "redis://redis:6379/12"
-  command: script/wait-for-neo4j rails server -b 0.0.0.0
+  command: script/start

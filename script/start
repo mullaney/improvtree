@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+bundle check || bundle install
+script/wait-for-neo4j rails server -b 0.0.0.0

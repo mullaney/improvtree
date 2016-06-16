@@ -17,4 +17,5 @@ loop do
 
   puts 'It works!'
   system ARGV.join(' ')
+  exit
 end

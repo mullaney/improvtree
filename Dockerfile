@@ -11,6 +11,5 @@ COPY ./Gemfile /webapp/
 COPY ./Gemfile.lock /webapp/
 RUN cd /webapp && bundle config build.pg --with-pg-config=$(which pg_config) && \
     cd /webapp && bundle config build.nokogiri --use-system-libraries
-RUN cd /webapp && bundle install --retry 15
-COPY . /webapp
+ENV BUNDLE_PATH /box
 CMD irb

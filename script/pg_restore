@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+export PGPASSWORD=postgres
+pg_restore --verbose --clean --no-acl --no-owner -h postgres -U postgres -d improvtree_development tmp/snapshots/latest.dump
