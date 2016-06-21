@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
     # Only roles that exist in `nominated_roles` and `VALID_ROLES` will be set.
     super nominated_roles & VALID_ROLES
   end
+
+  def admin?
+    roles.include?('admin')
+  end
 end
