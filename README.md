@@ -10,7 +10,7 @@ Clone this repository and move on to the setup:
 
 You'll need to setup your database:
 
-`scripts/rake db:setup`
+`script/rake db:setup`
 
 Then you can move on to the Common Workflow below.
 
@@ -18,7 +18,7 @@ Then you can move on to the Common Workflow below.
 
 To run a server:
 
-`scripts/serve`
+`script/serve`
 
 That command tarts postgresql, redis, and rails.
 
@@ -26,9 +26,9 @@ This will be available at localhost:3000
 
 To run `rails` or `rake` commands:
 
-`scripts/rails [command]`
+`script/rails [command]`
 
-`scripts/rake[command]`
+`script/rake[command]`
 
 Runs regular rails commands inside the docker vm. Will print out help.
 

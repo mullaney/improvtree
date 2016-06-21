@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-heroku pg:backups capture
-curl -o tmp/snapshots/latest.dump `heroku pg:backups public-url`
+set -e
+heroku pg:backups capture --app improvtree
+curl -o tmp/snapshots/latest.dump `heroku pg:backups public-url --app improvtree`
 script/rake db:setup
 docker-compose run web script/pg_restore
