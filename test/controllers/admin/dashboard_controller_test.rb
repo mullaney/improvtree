@@ -2,7 +2,7 @@ module Admin
   class DashboardControllerTest < ActionController::TestCase
     include Devise::TestHelpers
 
-    test "rejects non authenticated access" do
+    test "rejects non-authenticated access" do
       get :index
       assert_response :redirect
       assert_equal "Not available.", flash[:error]

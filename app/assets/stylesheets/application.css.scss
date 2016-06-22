@@ -12,10 +12,11 @@
  *
  *= require formtastic
  *= require_self
+ *= require admin
  */
 
 body {
-  font-family: sans-serif;
+  font-family: "Liberation Sans", "Helvetical Neue", sans-serif;
   font-size: 14pt;
   background-color: #cac474;
 }

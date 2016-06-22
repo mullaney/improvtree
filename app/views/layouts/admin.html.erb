@@ -1,0 +1,6 @@
+<% content_for(:header) do %>
+  <nav class="admin-navigation">
+    <%= admin_navigation_link "Users", admin_users_path %>
+  </nav>
+<% end %>
+<%= render template: 'layouts/shell' %>
