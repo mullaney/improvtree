@@ -5,17 +5,14 @@ class Admin::ResourceController < AdminController
 
   def show
     @resource = get_resource
-    render :show
   end
 
   def index
     @resources = get_resources
-    render :index
   end
 
   def new
     @resource = build_resource
-    render :new
   end
 
   def create
@@ -30,7 +27,6 @@ class Admin::ResourceController < AdminController
 
   def edit
     @resource = get_resource
-    render :edit
   end
 
   def update

@@ -5,4 +5,10 @@
   </dd>
 </dl>
 
+<h2>Add rep</h2>
+<%= semantic_form_for @rep, url: admin_reps_path do |f| %>
+  <%= select_tag 'to_node', Exercise.all.collect{|ex| [ex.title, ex.id]} %>
+  <%= f.submit %>
+<% end %>
+
 <%= link_to 'Back', resources_path %>

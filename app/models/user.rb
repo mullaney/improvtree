@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def admin?
     roles.include?('admin')
   end
+
+  def student 
+    Student.find_or_create_by user_id: self.id
+  end
 end
