@@ -1,0 +1,28 @@
+<h1>Exercises</h1>
+
+<%= link_to 'New Exercise', new_resource_path %>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+  </thead>
+
+  <% resources.each do |exercise| %>
+    <tr>
+      <td><%= exercise.title %></td>
+      <td><%= exercise.description %></td>
+      <td>
+        <%= link_to "Show", resource_path(exercise) %>
+        <%= link_to "Edit", edit_resource_path(exercise) %>
+        <%=
+          link_to "Delete", resource_path(exercise),
+            method: :delete,
+            data: {
+              confirm: "Are you sure?"
+            }
+        %>
+      </td>
+    </tr>
+  <% end %>
+</table>

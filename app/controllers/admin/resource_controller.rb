@@ -20,7 +20,7 @@ class Admin::ResourceController < AdminController
 
   def create
     @resource = build_resource
-    @resource.attributes = permitted_params
+    @resource.attributes = resource_params
     if @resource.save
       render :new
     else
@@ -43,7 +43,7 @@ class Admin::ResourceController < AdminController
   end
 
   def resource_params
-    params.require(resource_name).permit(permitted_params)
+    params[resource_name]
   end
 
   def permitted_params
