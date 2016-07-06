@@ -19,9 +19,9 @@ class Admin::ResourceController < AdminController
     @resource = build_resource
     @resource.attributes = resource_params
     if @resource.save
-      render :new
+      redirect_to next_page_path || resource_path
     else
-      redirect_to resource_path
+      render :new
     end
   end
 
@@ -49,7 +49,7 @@ class Admin::ResourceController < AdminController
   def destroy
     @resource = get_resource
     @resource.destroy
-    redirect_to resources_path
+    redirect_to next_page_path || resources_path
   end
 
   def build_resource
@@ -64,12 +64,20 @@ class Admin::ResourceController < AdminController
     resource_class.all
   end
 
-  def resource_name
-    resource_class.name.underscore
+  def resource_name(for_resource=nil)
+    if for_resource
+      for_resource.class.name.underscore
+    else
+      resource_class.name.underscore
+    end
   end
 
-  def resource_path(for_resource=@resource)
-    send :"admin_#{resource_name}_path", for_resource
+  def next_page_path
+    params[:next_page]
+  end
+
+  def resource_path(for_resource=@resource, options=nil)
+    send :"admin_#{resource_name(for_resource)}_path", for_resource, options
   end
 
   def resources_path
@@ -77,7 +85,7 @@ class Admin::ResourceController < AdminController
   end
 
   def edit_resource_path(for_resource=@resource)
-    send :"edit_admin_#{resource_name}_path", for_resource
+    send :"edit_admin_#{resource_name(for_resource)}_path", for_resource
   end
 
   def new_resource_path

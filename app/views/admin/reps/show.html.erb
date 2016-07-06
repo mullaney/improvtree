@@ -1,0 +1,33 @@
+<h1>Rep</h1>
+
+<dl>
+  <dt>Student</dt>
+  <dd>
+    <%=
+      link_to resource.from_node.user.email, resource_path(resource.from_node.user)
+    %>
+  </dd>
+
+  <dt>Exercise</dt>
+  <dd>
+    <%= link_to resource.to_node.title, resource_path(resource.to_node.loaded) %>
+    <p>
+      <%= resource.to_node.description %>
+    </p>
+  </dd>
+
+  <dt>Taken at:</dt>
+  <dd>
+    <%= resource.created_at.to_date.to_s(:long_ordinal) %>
+    <p>
+      <%= resource.to_node.description %>
+    </p>
+  </dd>
+
+  <dt>Rating:</dt>
+  <dd>
+    <%= resource.difficulty %>
+  </dd>
+</dl>
+
+<%= link_to 'Edit', edit_resource_path(resource) %>

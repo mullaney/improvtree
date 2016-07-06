@@ -1,0 +1,29 @@
+<h1>Rep</h1>
+
+<dl>
+  <dt>Student</dt>
+  <dd>
+    <%= resource.from_node.user.email %>
+  </dd>
+
+  <dt>Exercise</dt>
+  <dd>
+    <%= resource.to_node.title %>
+    <p>
+      <%= resource.to_node.description %>
+    </p>
+  </dd>
+
+  <dt>Taken at:</dt>
+  <dd>
+    <%= resource.created_at.to_date.to_s(:long_ordinal) %>
+    <p>
+      <%= resource.to_node.description %>
+    </p>
+  </dd>
+</dl>
+
+<%= semantic_form_for resource, url: resource_path(resource)  do |f| %>
+  <%= f.input :difficulty, as: :number %>
+  <%= f.submit %>
+<% end %>
