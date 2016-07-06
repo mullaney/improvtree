@@ -8,4 +8,4 @@ test:
 
 production:
   type: server_db
-  url: http://neo4j:password@localhost:7000
+  url: <%= ENV['GRAPHENEDB_URL'] %>
