@@ -13,7 +13,6 @@
 
     <%= resource.title %>
 
-
     <% resource.next_exercises.each do |exercise| %>
       &gt;
       <%= link_to exercise.title, resource_path(exercise) %>

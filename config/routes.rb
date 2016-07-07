@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "dashboard#index"
+    resources :series
     resources :users
     resources :exercises
     resources :reps

@@ -9,6 +9,14 @@ class Exercise
 
   has_one :in, :previous_exercise, rel_class: :NextExercise
 
+  def self.series_roots
+    Neo4j::Session.query.
+      match('exercise').
+      match('(exercise)-[:next_exercise]->()').
+      where_not(' ()-[:next_exercise]->(exercise)').
+      pluck('exercise')
+  end
+
   def next_exercise_rel
     rels(type: :next_exercise).detect do |rel|
       rel.from_node === self

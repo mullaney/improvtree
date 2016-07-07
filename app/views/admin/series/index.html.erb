@@ -1,0 +1,12 @@
+<h1>Exercise Series</h1>
+
+<% resources.each do |resource| %>
+  <div>
+    <%= link_to resource.title, resource_path(resource) %>
+
+    <% resource.next_exercises.each do |exercise| %>
+      &gt;
+      <%= link_to exercise.title, resource_path(exercise) %>
+    <% end %>
+  </div>
+<% end %>
