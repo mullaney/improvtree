@@ -24,6 +24,8 @@
 
 <p><%= resource.description %></p>
 
+<p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>
+
 <%= semantic_form_for :next_exercise, url: admin_next_exercises_path(next_page: request.original_url) do |f| %>
   <%= f.hidden_field :to_node_uuid, value: resource.id %>
   <% options = options_for_select([[]] + (Exercise.all.to_a - [resource, *resource.next_exercises, *(resource.previous_exercises - [resource.previous_exercise])]).collect{|e| [e.title, e.id]}, resource.previous_exercise.try(:id)) %>
@@ -58,4 +60,3 @@
   <% end %>
 <% end %>
 
-<p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>
