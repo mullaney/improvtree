@@ -1,28 +1,13 @@
-<dl>
-  <dt>Email Address</dt>
-  <dd>
-    <%= resource.email %>
-  </dd>
-</dl>
+<h1 class="admin">Student Page</h1>
+For: <%= resource.email %>
+<hr />
+<h2 class="admin">Exercises Completed</h2>
 
-<h2>Add rep</h2>
-<%= semantic_form_for :rep, url: admin_reps_path(next_page: request.original_url) do |f| %>
-  <%= f.hidden_field :from_node_uuid, value: resource.student.id %>
-  <%=
-    f.input :to_node_uuid,
-      label: 'Exercise',
-      as: :select,
-      include_blank: false,
-      collection: Exercise.all.collect{|e| [e.title, e.id]}
-  %>
-  <%= f.submit 'Add Rep' %>
-<% end %>
-
-<table>
+<table class="admin">
   <thead>
     <th>Exercise</th>
-    <th>Difficulty Feedback</th>
-    <th></th>
+    <th>Difficulty</th>
+    <th>Completed</th>
     <th></th>
   </thead>
 
@@ -32,9 +17,9 @@
       <td><%= rep.difficulty || 'unrated' %></td>
       <td><%= time_ago_in_words rep.created_at %> ago</td>
       <td>
-        <%= link_to "Edit", edit_resource_path(rep) %>
+        <%= link_to "Edit", edit_resource_path(rep), class: "bttn-edit" %>
         <%=
-          link_to "Delete", resource_path(rep, next_page: request.original_url),
+          link_to "Delete", resource_path(rep, next_page: request.original_url),  class: "bttn-del",
             method: :delete,
             data: {
               confirm: "Are you sure?"
@@ -44,5 +29,19 @@
     </tr>
   <% end %>
 </table>
+<hr />
+<h2 class="admin">Add rep</h2>
+<%= semantic_form_for :rep, url: admin_reps_path(next_page: request.original_url) do |f| %>
+  <%= f.hidden_field :from_node_uuid, value: resource.student.id %>
+  <%=
+    f.input :to_node_uuid,
+      label: 'Pick Exercise',
+      as: :select,
+      include_blank: false,
+      collection: Exercise.all.collect{|e| [e.title, e.id]}
+  %>
+  <%= f.submit 'Add Rep' %>
+<% end %>
 
-<%= link_to 'Back', resources_path %>
+
+<p><%= link_to 'Back', resources_path, class: "bttn-new" %></p>

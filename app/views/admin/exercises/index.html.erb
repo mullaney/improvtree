@@ -1,7 +1,6 @@
-<h1>Exercises</h1>
+<h1 class="admin">Exercises</h1>
 
-<%= link_to 'New Exercise', new_resource_path %>
-<table>
+<table class="admin">
   <thead>
     <th>Title</th>
     <th>Description</th>
@@ -10,13 +9,13 @@
 
   <% resources.each do |exercise| %>
     <tr>
-      <td><%= exercise.title %></td>
-      <td><%= exercise.description %></td>
+      <td><%= link_to resource_path(exercise) do %><%= exercise.title %><% end %></td>
+      <td><%= exercise.description.truncate( 150, separator: ' ') %></td>
       <td>
-        <%= link_to "Show", resource_path(exercise) %>
-        <%= link_to "Edit", edit_resource_path(exercise) %>
+        <%= link_to "Show", resource_path(exercise), class: "bttn-show" %>
+        <%= link_to "Edit", edit_resource_path(exercise), class: "bttn-edit" %>
         <%=
-          link_to "Delete", resource_path(exercise),
+          link_to "Delete", resource_path(exercise), class: "bttn-del",
             method: :delete,
             data: {
               confirm: "Are you sure?"
@@ -26,3 +25,5 @@
     </tr>
   <% end %>
 </table>
+
+<%= link_to 'New Exercise', new_resource_path, class: "bttn-new" %>

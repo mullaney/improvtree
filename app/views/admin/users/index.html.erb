@@ -1,5 +1,6 @@
-<%= link_to 'New User', new_resource_path %>
-<table>
+<h1 class="admin">Admin - Users</h1>
+<%= link_to 'New User', new_resource_path, class: "bttn-new" %>
+<table class="admin">
   <thead>
     <th>Email Address</th>
     <th>Roles</th>
@@ -8,13 +9,13 @@
 
   <% resources.each do |user| %>
     <tr>
-      <td><%= user.email %></td>
+      <td><%= link_to resource_path(user) do %><%= user.email %><% end %></td>
       <td><%= user.roles.to_sentence %></td>
       <td>
-        <%= link_to "Show", resource_path(user) %>
-        <%= link_to "Edit", edit_resource_path(user) %>
+        <%= link_to "Show", resource_path(user), class: "bttn-show" %>
+        <%= link_to "Edit", edit_resource_path(user), class: "bttn-edit" %>
         <%=
-          link_to "Delete", resource_path(user),
+          link_to "Delete", resource_path(user),  class: "bttn-del",
             method: :delete,
             data: {
               confirm: "Are you sure?"

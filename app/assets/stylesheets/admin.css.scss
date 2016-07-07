@@ -17,3 +17,61 @@
   padding-bottom: 1px;
   margin-bottom: -1px;
 }
+
+h1.admin {
+  font-size: 1.2em;
+}
+
+h2.admin { 
+  font-size: 1.0em;
+}
+
+table.admin td {
+  text-align: left;
+  padding: 6px 10px;
+  vertical-align: top;
+}
+
+table.admin th {
+  text-align: left;
+  padding: 6px 10px;
+  background-color: lightgray;
+}
+
+table.admin {
+  margin-top: 10px;
+}
+
+.bttn {
+  font-size: .8em;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 1px;
+}
+
+.bttn-show {
+  @extend .bttn;
+  background-color: blue;
+}
+
+.bttn-edit {
+  @extend .bttn;
+  background-color: green;
+}
+
+.bttn-del {
+  @extend .bttn;
+  background-color: red;
+}
+
+.bttn-new {
+  @extend .bttn;
+  background-color: cadetblue;
+}
+
+li.input {
+  list-style-type: none;
+}
