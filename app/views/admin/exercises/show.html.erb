@@ -1,5 +1,7 @@
 <p><%= link_to 'All Exercises', resources_path %></p>
 
+<h1 class="admin"><%= resource.title %></h1>
+
 <% if resource.previous_exercise || resource.next_exercise %>
   <div>
     Part of a series:
@@ -19,9 +21,7 @@
   </div>
 <% end %>
 
-<h1 class="admin"><%= resource.title %></h1>
 <p><%= resource.description %></p>
-
 
 <%= semantic_form_for :next_exercise, url: admin_next_exercises_path(next_page: request.original_url) do |f| %>
   <%= f.hidden_field :to_node_uuid, value: resource.id %>
