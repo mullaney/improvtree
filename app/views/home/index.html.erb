@@ -7,6 +7,7 @@
   <p class="splash-copy">Self-directed improv training</p>
   <p class="splash-menu">
     <% if user_signed_in? %>
+      <%= link_to "Student Page", student_root_path %> |
       <%= link_to 'Edit profile', edit_user_registration_path %> | 
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% if current_user.admin? %>
