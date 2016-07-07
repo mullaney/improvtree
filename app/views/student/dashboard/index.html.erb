@@ -1,0 +1,30 @@
+<h1> Hello Student </h1>
+<p>
+  <%= current_user.email %>
+</p>
+
+<h2>Your Exercises</h2>
+<table>
+  <thead>
+    <th>Exercise</th>
+    <th>Difficulty Feedback</th>
+    <th></th>
+  </thead>
+
+  <% current_student.exercises.each_with_rel do |exercise, rep| %>
+    <tr>
+      <td><%= exercise.title %></td>
+      <td>
+        <% if rep.difficulty %>
+          <%= rep.difficulty %>
+        <% else %>
+          <%= form_for rep, url: student_rep_path(rep, next_page: student_root_path) do |f| %>
+            <%= f.select :difficulty, (1..5).map{|scale| [scale, scale] } %>
+            <%= f.submit 'Rate Difficulty' %>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= time_ago_in_words rep.created_at %> ago</td>
+    </tr>
+  <% end %>
+</table>

@@ -10,6 +10,7 @@
 
   <body>
     <header class="top-menu">
+      <p><%= flash[:error] %></p>
       <% if content_for(:header) == 'none' %>
       <% elsif content_for(:header) %>
         <%= yield :header %>
