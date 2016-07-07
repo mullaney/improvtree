@@ -1,5 +1,60 @@
 <p><%= link_to 'All Exercises', resources_path %></p>
+
+<% if resource.previous_exercise || resource.next_exercise %>
+  <div>
+    Part of a series:
+
+    <% resource.previous_exercises.each do |exercise| %>
+      <%= link_to exercise.title, resource_path(exercise) %>
+      &gt;
+    <% end %>
+
+    <%= resource.title %>
+
+
+    <% resource.next_exercises.each do |exercise| %>
+      &gt;
+      <%= link_to exercise.title, resource_path(exercise) %>
+    <% end %>
+  </div>
+<% end %>
+
 <h1 class="admin"><%= resource.title %></h1>
 <p><%= resource.description %></p>
-<p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>
 
+
+<%= semantic_form_for :next_exercise, url: admin_next_exercises_path(next_page: request.original_url) do |f| %>
+  <%= f.hidden_field :to_node_uuid, value: resource.id %>
+  <% options = options_for_select([[]] + (Exercise.all.to_a - [resource, *resource.next_exercises, *(resource.previous_exercises - [resource.previous_exercise])]).collect{|e| [e.title, e.id]}, resource.previous_exercise.try(:id)) %>
+  <%= f.select :from_node_uuid, options %>
+  <%= f.submit 'Set Previous Exercise' %>
+
+  <% if resource.previous_exercise_rel %>
+    <%=
+      link_to "Clear", resource_path(resource.previous_exercise_rel, next_page: request.original_url),  class: "bttn-del",
+        method: :delete,
+        data: {
+          confirm: "Are you sure?"
+        }
+    %>
+  <% end %>
+<% end %>
+
+<%= semantic_form_for :next_exercise, url: admin_next_exercises_path(next_page: request.original_url) do |f| %>
+  <%= f.hidden_field :from_node_uuid, value: resource.id %>
+  <% options = options_for_select([[]] + (Exercise.all.to_a - [resource, *(resource.next_exercises - [resource.next_exercise]), *resource.previous_exercises]).collect{|e| [e.title, e.id]}, resource.next_exercise.try(:id)) %>
+  <%= f.select :to_node_uuid, options %>
+  <%= f.submit 'Set Next Exercise' %>
+
+  <% if resource.next_exercise_rel %>
+    <%=
+      link_to "Clear", resource_path(resource.next_exercise_rel, next_page: request.original_url),  class: "bttn-del",
+        method: :delete,
+        data: {
+          confirm: "Are you sure?"
+        }
+    %>
+  <% end %>
+<% end %>
+
+<p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>

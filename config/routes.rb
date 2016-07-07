@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users
     resources :exercises
     resources :reps
+    resources :next_exercises
   end
 
   namespace :student do
