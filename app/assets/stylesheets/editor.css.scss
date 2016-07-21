@@ -1,0 +1,13 @@
+trix-toolbar {
+  button.heading:before {
+    content: "T";
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  button.subheading:before {
+    content: "T";
+    font-size: 16px;
+    margin-top: 8px;
+  }
+}

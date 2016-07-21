@@ -21,7 +21,18 @@
   <hr/>
 <% end %>
 
-<p><%= resource.description %></p>
+
+<section>
+  <h1>Description</h1>
+  <hr>
+  <%= sanitize resource.description %>
+</section>
+
+<section>
+  <h1>Teacher's Notes</h1>
+  <hr>
+  <%= sanitize resource.teachers_notes %>
+</section>
 
 <p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>
 

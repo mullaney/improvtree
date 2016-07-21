@@ -16,4 +16,8 @@ module ApplicationHelper
 
     link_to text, path, class: classname
   end
+
+  def partial(path, locals={})
+    render partial: path, locals: locals
+  end
 end

@@ -10,7 +10,7 @@
   <% resources.each do |exercise| %>
     <tr>
       <td><%= link_to resource_path(exercise) do %><%= exercise.title %><% end %></td>
-      <td><%= exercise.description.truncate( 150, separator: ' ') %></td>
+      <td><%= sanitize exercise.description.truncate( 150, separator: ' ') %></td>
       <td>
         <%= link_to "Show", resource_path(exercise), class: "bttn-show" %>
         <%= link_to "Edit", edit_resource_path(exercise), class: "bttn-edit" %>

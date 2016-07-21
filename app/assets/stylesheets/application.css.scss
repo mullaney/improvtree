@@ -13,6 +13,8 @@
  *= require formtastic
  *= require_self
  *= require admin
+ *= require trix
+ *= require ./editor
  */
 
 body {
@@ -62,4 +64,11 @@ body {
   margin: auto;
   padding: 5px 20px;
   background-color: white;
+}
+
+
+.trix-editor-wrapper trix-editor {
+  strong {
+    font-weight: bold;
+  }
 }

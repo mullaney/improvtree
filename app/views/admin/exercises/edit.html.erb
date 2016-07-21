@@ -1,5 +1,4 @@
 <%= semantic_form_for resource, url: resource_path do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description, as: :text, :input_html => { :class => 'autogrow', :rows => 10, :cols => 52  } %>
+  <%= partial 'form', f: f %>
   <%= f.submit %>
 <% end %>

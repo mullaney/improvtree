@@ -4,6 +4,7 @@ class Exercise
 
   property :title
   property :description
+  property :teachers_notes
 
   has_one :out, :next_exercise, rel_class: :NextExercise
 

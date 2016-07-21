@@ -5,9 +5,22 @@ class Rep
   to_class :Exercise
   type :rep
 
-  property :difficulty, type: Integer
+  %w(difficulty usefulness understanding).each do |metric|
+    property metric, type: Integer
+    validates metric,
+      numericality: {
+        integer_only: true,
+        allow_blank: true,
+        allow_nil: true
+      }
 
-  validates_numericality_of :difficulty,
-    integer_only: true,
-    allow_nil: true
+    define_method metric do
+      value = super()
+      if value === 0
+        nil
+      else
+        value
+      end
+    end
+  end
 end
