@@ -96,5 +96,13 @@ body {
   font-weight: normal;
 }
 
-.exercise-scrollable {
+@media screen and (max-width: 768px) {
+  .exercise-description {
+    position: fixed;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    margin: 16px 20px;
+  }
 }
