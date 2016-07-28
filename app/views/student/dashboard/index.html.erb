@@ -9,34 +9,39 @@
 
 <% counter = 1 %>
 
-<% current_student.exercises.each_with_rel do |exercise, rep| %>
-<div class="exercise">
-  <div class="pull-right">
-    <paper-button raised onclick="exercise<%= counter %>.open()">Description</paper-button>
-  </div>
-  <p class="exercise-title">
-    <%= exercise.title %><br />
-    <span class="exercise-meta">Completed <%= time_ago_in_words rep.created_at %> ago</span>
-  </p>
-  <p>
-    <%= form_for rep, url: student_rep_path(rep, next_page: student_root_path) do |f| %>
-      <%= f.select :difficulty, [['', 0]] + (1..5).map{|scale| [scale, scale] } %> Difficulty <br />
-      <%= f.select :usefulness, [['', 0]] + (1..5).map{|scale| [scale, scale] } %>
-      Usefulness <br /> 
-      <%= f.submit 'Save Rating' %>
-    <% end %>
-  </p>
+<% current_student.enrollments.each do |enrollment| %>
+  <h3>Class: <%= enrollment.class_section.name %></h3>
 
-  <paper-dialog id="exercise<%= counter %>" class="exercise-description">
-    <h2><%= exercise.title %></h2>
-    <paper-dialog-scrollable class="exercise-scrollable">
-      <p><%= sanitize exercise.description %></p>
-    </paper-dialog-scrollable>
-    <div class="buttons">
-      <paper-button dialog-confirm autofocus>OK</paper-button>
+  <% enrollment.reps.each do |rep| %>
+    <% exercise = rep.exercise %>
+    <div class="exercise">
+      <div class="pull-right">
+        <paper-button raised onclick="exercise<%= counter %>.open()">Description</paper-button>
+      </div>
+      <p class="exercise-title">
+        <%= exercise.title %><br />
+        <span class="exercise-meta">Completed <%= time_ago_in_words rep.created_at %> ago</span>
+      </p>
+      <p>
+        <%= form_for rep, url: student_rep_path(rep, next_page: student_root_path) do |f| %>
+          <%= f.select :difficulty, [['', 0]] + (1..5).map{|scale| [scale, scale] } %> Difficulty <br />
+          <%= f.select :usefulness, [['', 0]] + (1..5).map{|scale| [scale, scale] } %>
+          Usefulness <br />
+          <%= f.submit 'Save Rating' %>
+        <% end %>
+      </p>
+
+      <paper-dialog id="exercise<%= counter %>" class="exercise-description">
+        <h2><%= exercise.title %></h2>
+        <paper-dialog-scrollable class="exercise-scrollable">
+          <p><%= sanitize exercise.description %></p>
+        </paper-dialog-scrollable>
+        <div class="buttons">
+          <paper-button dialog-confirm autofocus>OK</paper-button>
+        </div>
+      </paper-dialog>
+
+      <% counter = counter + 1 %>
     </div>
-  </paper-dialog>
-
-  <% counter = counter + 1 %>
-</div>
+  <% end %>
 <% end %>

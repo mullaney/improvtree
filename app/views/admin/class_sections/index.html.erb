@@ -1,0 +1,26 @@
+<h1 class="admin">Admin - Class Sections</h1>
+<%= link_to 'New Class', new_resource_path, class: "bttn-new" %>
+<table class="admin">
+  <thead>
+    <th>Name</th>
+    <th></th>
+  </thead>
+
+  <% resources.each do |class_section| %>
+    <tr>
+      <td><%= link_to resource_path(class_section) do %><%= class_section.name %><% end %></td>
+      <td>
+        <%= link_to "Show", resource_path(class_section), class: "bttn-show" %>
+        <%= link_to "Edit", edit_resource_path(class_section), class: "bttn-edit" %>
+        <%=
+          link_to "Delete", resource_path(class_section),  class: "bttn-del",
+            method: :delete,
+            data: {
+              confirm: "Are you sure?"
+            }
+        %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+

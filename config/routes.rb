@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :exercises
     resources :reps
     resources :next_exercises
+    resources :class_sections
+    resources :enrollments
   end
 
   namespace :student do

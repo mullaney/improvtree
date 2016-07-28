@@ -29,19 +29,5 @@ For: <%= resource.email %>
     </tr>
   <% end %>
 </table>
-<hr />
-<h2 class="admin">Add rep</h2>
-<%= semantic_form_for :rep, url: admin_reps_path(next_page: request.original_url) do |f| %>
-  <%= f.hidden_field :from_node_uuid, value: resource.student.id %>
-  <%=
-    f.input :to_node_uuid,
-      label: 'Pick Exercise',
-      as: :select,
-      include_blank: false,
-      collection: Exercise.all.collect{|e| [e.title, e.id]}
-  %>
-  <%= f.submit 'Add Rep' %>
-<% end %>
-
 
 <p><%= link_to 'Back', resources_path, class: "bttn-new" %></p>

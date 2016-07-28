@@ -1,0 +1,67 @@
+<p><%= link_to 'All Classes', resources_path %></p>
+
+<h1 class="admin"><%= resource.name %></h1>
+<p><%= link_to "Edit", edit_resource_path(resource), class: "bttn-edit" %></p>
+
+<h2>Students</h2>
+
+<%=
+  semantic_form_for :enrollment,
+    url: admin_enrollments_path(next_page: request.original_url) do |f|
+%>
+  <%= f.hidden_field :class_section, value: resource.id %>
+  <%
+    options = options_for_select(
+      (Student.all.to_a - resource.students.to_a).collect do |student|
+        [student.user.email, student.id]
+      end
+    )
+  %>
+  <%= f.select :student, options %>
+  <%= f.submit 'Add Student' %>
+<% end %>
+
+
+<%= semantic_form_for :rep, url: admin_reps_path(next_page: request.original_url) do |f| %>
+  <table class="admin">
+    <thead>
+      <th><input type="checkbox"></th>
+      <th>Email Address</th>
+      <th></th>
+    </thead>
+
+    <% resource.enrollments.each do |enrollment| %>
+      <tr>
+        <td>
+          <%=
+            f.input :enrollments,
+              as: 'check_boxes',
+              collection: [enrollment.id]
+          %>
+        </td>
+        <td><%= link_to resource_path(enrollment.student.user) do %><%= enrollment.student.user.email %><% end %></td>
+        <td>
+          <%= link_to "Show", resource_path(enrollment.student.user), class: "bttn-show" %>
+          <%=
+            link_to "Remove", resource_path(enrollment, next_page: request.original_url),  class: "bttn-del",
+              method: :delete,
+              data: {
+                confirm: "Are you sure?"
+              }
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr />
+  <h2 class="admin">Add rep (will apply to all selected students)</h2>
+  <%=
+    f.input :exercise,
+      label: 'Pick Exercise',
+      as: :select,
+      include_blank: false,
+      collection: Exercise.all.collect{|e| [e.title, e.id]}
+  %>
+  <%= f.submit 'Add Rep' %>
+<% end %>

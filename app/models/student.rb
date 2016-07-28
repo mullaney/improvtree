@@ -1,9 +1,12 @@
 class Student
-  include Neo4j::ActiveNode
-  include Neo4j::Timestamps
+  include ApplicationNode
 
   property :user_id
-  has_many :out, :exercises, rel_class: :Rep
+  has_many :out, :enrollments, type: :enrollment
+
+  def exercises
+    enrollments.reps.exercise
+  end
 
   def user
     User.find(user_id)
