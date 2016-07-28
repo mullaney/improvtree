@@ -27,14 +27,11 @@
     <% end %>
   </p>
 
-  <paper-dialog id="exercise<%= counter %>">
+  <paper-dialog id="exercise<%= counter %>" class="exercise-description">
     <h2><%= exercise.title %></h2>
-    <paper-dialog-scrollable>
+    <paper-dialog-scrollable class="exercise-scrollable">
       <p><%= sanitize exercise.description %></p>
     </paper-dialog-scrollable>
-    <div class="buttons">
-      <paper-button dialog-confirm autofocus>OK</paper-button>
-    </div>
   </paper-dialog>
 
   <% counter = counter + 1 %>
