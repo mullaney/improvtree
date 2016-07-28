@@ -70,3 +70,23 @@
   <% end %>
 <% end %>
 
+<section style="display: none;">
+  <h1>Student Feedback</h1>
+  <table class="admin">
+    <thead>
+      <th>Student</th>
+      <th>Difficulty</th>
+      <th>Usefulness</th>
+    </thead>
+
+    <% resource.reps.each do |rep| %>
+      <% student = rep.enrollment.student %>
+      <tr>
+        <td><%= link_to student.user.email, resourc_path(student.user) %></td>
+        <td><%= rep.difficulty || 'unrated' %></td>
+        <td><%= rep.usefulness|| 'unrated' %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
+

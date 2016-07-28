@@ -7,14 +7,17 @@ For: <%= resource.email %>
   <thead>
     <th>Exercise</th>
     <th>Difficulty</th>
+    <th>Usefulness</th>
     <th>Completed</th>
     <th></th>
   </thead>
 
-  <% resource.student.exercises.each_with_rel do |exercise, rep| %>
+  <% resource.student.enrollments.reps.each do |rep| %>
+    <% exercise = rep.exercise %>
     <tr>
       <td><%= exercise.title %></td>
       <td><%= rep.difficulty || 'unrated' %></td>
+      <td><%= rep.usefulness|| 'unrated' %></td>
       <td><%= time_ago_in_words rep.created_at %> ago</td>
       <td>
         <%= link_to "Edit", edit_resource_path(rep), class: "bttn-edit" %>

@@ -4,15 +4,15 @@
   <dt>Student</dt>
   <dd>
     <%=
-      link_to resource.from_node.user.email, resource_path(resource.from_node.user)
+      link_to resource.enrollment.student.user.email, resource_path(resource.enrollment.student.user)
     %>
   </dd>
 
   <dt>Exercise</dt>
   <dd>
-    <%= link_to resource.to_node.title, resource_path(resource.to_node.loaded) %>
+    <%= link_to resource.exercise.title, resource_path(resource.exercise.loaded) %>
     <p>
-      <%= resource.to_node.description %>
+      <%= resource.exercise.description %>
     </p>
   </dd>
 
@@ -20,7 +20,7 @@
   <dd>
     <%= resource.created_at.to_date.to_s(:long_ordinal) %>
     <p>
-      <%= resource.to_node.description %>
+      <%= sanitize resource.exercise.description %>
     </p>
   </dd>
 

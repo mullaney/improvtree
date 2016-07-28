@@ -3,14 +3,14 @@
 <dl>
   <dt>Student</dt>
   <dd>
-    <%= resource.from_node.user.email %>
+    <%= resource.enrollment.student.user.email %>
   </dd>
 
   <dt>Exercise</dt>
   <dd>
-    <%= resource.to_node.title %>
+    <%= resource.exercise.title %>
     <p>
-      <%= resource.to_node.description %>
+      <%= resource.exercise.description %>
     </p>
   </dd>
 
@@ -18,7 +18,7 @@
   <dd>
     <%= resource.created_at.to_date.to_s(:long_ordinal) %>
     <p>
-      <%= resource.to_node.description %>
+      <%= sanitize resource.exercise.description %>
     </p>
   </dd>
 </dl>
