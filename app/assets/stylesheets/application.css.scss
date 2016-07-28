@@ -72,3 +72,29 @@ body {
     font-weight: bold;
   }
 }
+
+.pull-right {
+  float: right;
+}
+
+.exercise {
+  border: solid 1px #666;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: white;
+}
+
+.exercise-title {
+  font-size: 1.2em;
+  font-weight: bolder;
+  margin-top: 0;
+}
+
+.exercise-meta {
+  font-style: italic;
+  font-size: .8em;
+  font-weight: normal;
+}
+
+.exercise-scrollable {
+}
