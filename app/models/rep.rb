@@ -1,9 +1,13 @@
 class Rep
-  include ApplicationRel
+  include ApplicationNode
 
-  from_class :Student
-  to_class :Exercise
-  type :rep
+  has_one :in, :enrollment,
+    model_class: :Enrollment,
+    type: :rep
+
+  has_one :out, :exercise,
+    model_class: :Exercise,
+    type: :exercise
 
   %w(difficulty usefulness understanding).each do |metric|
     property metric, type: Integer

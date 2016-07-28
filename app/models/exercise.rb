@@ -1,6 +1,5 @@
 class Exercise
-  include Neo4j::ActiveNode
-  include Neo4j::Timestamps
+  include ApplicationNode
 
   property :title
   property :description
