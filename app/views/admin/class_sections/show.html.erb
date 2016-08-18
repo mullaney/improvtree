@@ -36,7 +36,8 @@
           <%=
             f.input :enrollments,
               as: 'check_boxes',
-              collection: [enrollment.id]
+              collection: [enrollment.id],
+              label: false
           %>
         </td>
         <td><%= link_to resource_path(enrollment.student.user) do %><%= enrollment.student.user.email %><% end %></td>

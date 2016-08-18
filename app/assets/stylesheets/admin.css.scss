@@ -22,7 +22,7 @@ h1.admin {
   font-size: 1.2em;
 }
 
-h2.admin { 
+h2.admin {
   font-size: 1.0em;
 }
 
@@ -74,4 +74,25 @@ table.admin {
 
 li.input {
   list-style-type: none;
+}
+
+// Hide some nasty labels in class page forms
+.formtastic.rep {
+  ol.choices-group {
+    padding: 0;
+  }
+
+  #rep_enrollments_input {
+    lagend.label {
+      display: none;
+    }
+
+    label {
+     font-size: 0;
+
+     input {
+      font-size: initial;
+     }
+    }
+  }
 }

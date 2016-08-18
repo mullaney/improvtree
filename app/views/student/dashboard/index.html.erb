@@ -7,6 +7,8 @@
 
 <p>Please rate each exercise from 1-5 for diffulty and usefulness. 5 means most difficult and most useful.</p>
 
+<p>If you have more general comments, please leave them here for individual exercises.</p>
+
 <% counter = 1 %>
 
 <% current_student.enrollments.each do |enrollment| %>
@@ -28,6 +30,23 @@
           <%= f.select :usefulness, [['', 0]] + (1..5).map{|scale| [scale, scale] } %>
           Usefulness <br />
           <%= f.submit 'Save Rating' %>
+        <% end %>
+      </p>
+      <div>
+        <% if rep.comments.any? %>
+          <% rep.comments.each do |comment| %>
+            <p>
+              You said: <%= comment.text %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+      <p>
+        <%= form_for :comment, url: student_comments_path(next_page: student_root_path) do |f| %>
+          <%= f.text_area :text %>
+          <%= f.hidden_field :comment_on_uuid, value: rep.id %>
+          <%= f.hidden_field :author, value: current_student.id %>
+          <%= f.submit "Send Comment" %>
         <% end %>
       </p>
 

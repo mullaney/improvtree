@@ -8,7 +8,7 @@ class Exercise
   has_one :out, :next_exercise, rel_class: :NextExercise
 
   has_one :in, :previous_exercise, rel_class: :NextExercise
-  has_many :in, :reps, type: :rep
+  has_many :in, :reps, type: :exercise
 
   def self.series_roots
     Neo4j::Session.query.

@@ -9,6 +9,8 @@ class Rep
     model_class: :Exercise,
     type: :exercise
 
+  has_many :in, :comments, origin: :comment_on
+
   %w(difficulty usefulness understanding).each do |metric|
     property metric, type: Integer
     validates metric,

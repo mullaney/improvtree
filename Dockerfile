@@ -3,7 +3,7 @@ RUN mkdir /webapp
 RUN apk --update add --virtual build_deps \
     build-base ruby-dev libc-dev linux-headers \
     openssl-dev postgresql-dev libxml2-dev libxslt-dev \
-    bash
+    bash postgresql
 RUN gem install bundler -v 1.11.2
 WORKDIR /webapp
 COPY ./Gemfile /webapp/
